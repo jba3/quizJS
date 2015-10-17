@@ -1,0 +1,45 @@
+<div class="intro" ng-show="!inProgress">
+	<p>This is a sample quiz application, built with AngularJS, PHP, MySQL, and Bootstrap.</p>
+	<p>Are you ready to test your knowledge of pokemon? There are 10 questions.</p>
+	<p>(This quiz is only for first gen pokemon)</p>
+	<p>&nbsp;</p>
+	<p>
+		<button class="btn btn-success" ng-click="start()">I want to be the very best!</button>
+		<button class="btn btn-info" ng-click="bail()">I need more training!</button>
+	</p>
+</div>
+
+<div class="quiz-area" ng-show="inProgress">
+	<div ng-show="!quizOver">
+		<p id="question">{{question}}</p>
+
+		<ul id="options" class="list-group">
+			<li ng-repeat="option in options" class="list-group-item">
+				<label>
+					<input type="radio" name="answer" value="{{option}}">
+					{{option}}
+					<span style="float:right"></span>
+				</label>
+			</li>
+		</ul>
+
+		<button class="btn btn-primary" name="answer" ng-click="checkAnswer()" ng-show="answerMode">Answer</button>
+
+		<div ng-show="!answerMode" id="answerResult">
+			<button ng-click="nextQuestion()" class="btn btn-primary next-question">Next Question <span class="glyphicon glyphicon-chevron-right"></span></button>
+		</div>
+	</div>
+
+	<div ng-show="quizOver">
+		<p>Your final score is below. Thanks for playing!</p>
+		<p>Your rank: {{trainerRank}}</p>
+
+		<p>
+			<button class="btn btn-success" ng-click="reset()">Play again</button>
+		</p>
+	</div>
+
+	<div id="score">
+		Trainer points: {{score}}
+	</div>
+</div>
